@@ -1,2 +1,4 @@
 deprecated/
 dist/
+*.in
+*.DS_store

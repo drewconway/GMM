@@ -1,0 +1,34 @@
+==================
+Graph Motif Models
+==================
+
+This package provides a basic framework and supporting functionality for generating network structure network structure using graph motifs.
+
+The paper in support of this method is currently unpublished and is a working draft, but is available from the author upon request.
+
+Installation
+============
+
+To install the the GMM package you can use setuptools as normal with:
+
+    >>> easy_install GMM
+
+Depending on your permissions settings you may also have to invoke the `sudo` appendix.
+
+You can also download the the distribution listed below and install from the source code in the `GMM` folder with:
+
+    >>> python setup.py install
+
+Documentation
+=============
+
+To browse the documentation for this package see: http://www.drewconway.com/gmm/
+    
+
+Contact
+=======
+
+ - Author:  Drew Conway
+ - Email:   drew.conway@nyu.edu
+ - Date:    2011-04-22
+
