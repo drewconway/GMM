@@ -1,0 +1,280 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>algorithms &mdash; gmm v0.3.1 documentation</title>
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.3.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="gmm v0.3.1 documentation" href="../index.html" />
+    <link rel="prev" title="Graph Motif Model (gmm)" href="gmm.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="gmm.html" title="Graph Motif Model (gmm)"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">gmm v0.3.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-gmm.algorithms">
+<span id="algorithms"></span><h1>algorithms<a class="headerlink" href="#module-gmm.algorithms" title="Permalink to this headline">¶</a></h1>
+<p>algorithms.py</p>
+<p>Purpose:  Algorithms used to simulate graph structues using Graph Motif Models</p>
+<p>Author:   Drew Conway
+Email:    <a class="reference external" href="mailto:drew&#46;conway&#37;&#52;&#48;nyu&#46;edu">drew<span>&#46;</span>conway<span>&#64;</span>nyu<span>&#46;</span>edu</a></p>
+<dl class="function">
+<dt id="gmm.algorithms.simulate">
+<tt class="descclassname">gmm.algorithms.</tt><tt class="descname">simulate</tt><big>(</big><em>gmm</em>, <em>tau</em>, <em>poisson=True</em>, <em>new_name='GMM Simulation'</em><big>)</big><a class="headerlink" href="#gmm.algorithms.simulate" title="Permalink to this definition">¶</a></dt>
+<dd><p>The primary function for generating networks using the graph motif modeling technique.  
+The function takes two arguments, a gmm object and a tau value, and returns a NetworkX 
+graph object based on the construct of the gmm passed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>gmm</strong> : A graph motif model object.</p>
+<p><strong>tau</strong> : An number greater than or equal to two, which is used to generate a set of graph</p>
+<blockquote>
+<div><p>motifs for the simulation.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>gmm_sim</strong> : A NetworkX graph object derived from a graph motif model simualtion on a</p>
+<blockquote class="last">
+<div><p>given gmm object.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="gmm.algorithms.draw_structure">
+<tt class="descclassname">gmm.algorithms.</tt><tt class="descname">draw_structure</tt><big>(</big><em>motif_mass</em><big>)</big><a class="headerlink" href="#gmm.algorithms.draw_structure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Take a list of tuples of the construct (index,motif,probability mass) and takes a random
+draw of a motif based on the probability masses.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>motf_mass</strong> : A list of tuples of the constructure (index,motif,probability mass), likely constructred</p>
+<blockquote>
+<div><p>by the gmm_simulate function.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Returns :</th><td class="field-body"><p class="first last"><strong>motif</strong> : A randomly drawn graph motif, as a NetworkX graph object</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="gmm.algorithms.motif_counts">
+<tt class="descclassname">gmm.algorithms.</tt><tt class="descname">motif_counts</tt><big>(</big><em>gmm</em>, <em>tau</em><big>)</big><a class="headerlink" href="#gmm.algorithms.motif_counts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns dictionary keyed by graph motifs and values as the number of subgraph isomorphisms 
+for the given motif counted in the base structure of the given GMM object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>gmm</strong> : A graph motif model object.</p>
+<p><strong>tau</strong> : An integer greater than or equal to 2, which designates the number of nodes in the</p>
+<blockquote>
+<div><p>largest graph in set of graph motifs used in the given model.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>subgraph_counts</strong> : A list of tuples with the following construction (index,motif,count), where</p>
+<blockquote class="last">
+<div><p>&#8220;count&#8221; is the number of subgraph isomorphisms for the given motif counted in the base 
+structure of the given GMM object and index is the motif index.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="gmm.algorithms.get_motifs">
+<tt class="descclassname">gmm.algorithms.</tt><tt class="descname">get_motifs</tt><big>(</big><em>tau</em>, <em>directed_motifs</em><big>)</big><a class="headerlink" href="#gmm.algorithms.get_motifs" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>Returns a list of tupples of all possible single component non-singleton subgraphs from a dyad to 
+$G={V=tau,E=</div></blockquote>
+<p>rac{tau(tau-1)}{2}}$, i.e. the K_{tau} complete graph.</p>
+<blockquote>
+<div>The list represents the set of graph moitifs used in a given model.  This function is 
+primarily meant as a helper to motif_counts, but can be used for other user purposes.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>tau</strong> : An integer greater than or equal to 2, which designates the number of nodes in the</p>
+<blockquote>
+<div><blockquote>
+<div><p>largest graph in set of graph motifs used in the given model.</p>
+</div></blockquote>
+<p>directed_motifs : A boolean designating whether the motifs should be directed.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>motifs</strong> : A list of tuples of the following construction (index,motif,0).  The final zero is used as</p>
+<blockquote class="last">
+<div><p>is a placeholder and will set the counts of subgraph isomorphism for each motif in the GMM&#8217;s 
+base structure.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="gmm.algorithms.all_graphs">
+<tt class="descclassname">gmm.algorithms.</tt><tt class="descname">all_graphs</tt><big>(</big><em>num_nodes</em>, <em>directed_motifs</em><big>)</big><a class="headerlink" href="#gmm.algorithms.all_graphs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retuns a list of all possible single component graphs given some number of nodes. This function 
+is meant primarily as a helper function to get_subgraphs, but can be used for other user purposes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>num_nodes</strong> : The number of nodes in the complete graph</p>
+<p><strong>directed_motifs</strong> : A boolean designating whether the motifs should be directed.</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Returns :</th><td class="field-body"><p class="first last"><strong>graphs</strong> : A list of all possible single component graphs given some number of nodes</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="gmm.algorithms.poisson_mass">
+<tt class="descclassname">gmm.algorithms.</tt><tt class="descname">poisson_mass</tt><big>(</big><em>motif_counts</em><big>)</big><a class="headerlink" href="#gmm.algorithms.poisson_mass" title="Permalink to this definition">¶</a></dt>
+<dd><p>Will calculate a shape parameter (lambda) for a Possion distribution given some motif counts.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>motif_counts</strong> :  A dictionary of motif counts keyed by (order, motif) tuples with count values.</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>motif_pmf</strong> : A dictionary of motif counts keyed by (order, motif) tuples with Poisson probability</p>
+<blockquote class="last">
+<div><p>mass function as values given the lambda estimate from the motif_counts.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>There are two critical assumption inherent to using the Poisson fit method for estimating:</p>
+<ul class="simple">
+<li>Graphs can be ordered by complexity.  This is tacitly implied in the model, but when using</li>
+</ul>
+<p>the Poisson fit to estimate mass for all motifs it is explicit.</p>
+<ul class="simple">
+<li>Perhaps more importantly, motif counts are distributed Possion</li>
+</ul>
+<p>In this case the most basic motif, the dyad, maps to k=0, and the assumed k value increases as 
+both node and edge complexity increase in motifs.</p>
+<p>The primary advantage of this method is to assure that there is some positive probability mass
+for every motif in the model. In some cases a motif may have a zero probability given some
+base structure.  This method will prevent that outcome.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="gmm.html"
+                        title="previous chapter">Graph Motif Model (gmm)</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/source/algorithms.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="gmm.html" title="Graph Motif Model (gmm)"
+             >previous</a> |</li>
+        <li><a href="../index.html">gmm v0.3.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2011, Drew Conway.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+    </div>
+  </body>
+</html>

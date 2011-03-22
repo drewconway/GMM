@@ -1,0 +1,265 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Graph Motif Model (gmm) &mdash; gmm v0.3.1 documentation</title>
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.3.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="gmm v0.3.1 documentation" href="../index.html" />
+    <link rel="next" title="algorithms" href="algorithms.html" />
+    <link rel="prev" title="Welcome to gmm’s documentation!" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="algorithms.html" title="algorithms"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="Welcome to gmm’s documentation!"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">gmm v0.3.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-gmm.gmm">
+<span id="graph-motif-model-gmm"></span><h1>Graph Motif Model (gmm)<a class="headerlink" href="#module-gmm.gmm" title="Permalink to this headline">¶</a></h1>
+<p>gmm.py</p>
+<dl class="docutils">
+<dt>Purpose:  Classes used to generate networks from the graph motif model proposed</dt>
+<dd>in paper entitled, &#8220;Graph Motif Models.&#8221; This method is an alternate
+process for generating network structure from observed structure.</dd>
+</dl>
+<p>Author:   Drew Conway
+Email:    <a class="reference external" href="mailto:drew&#46;conway&#37;&#52;&#48;nyu&#46;edu">drew<span>&#46;</span>conway<span>&#64;</span>nyu<span>&#46;</span>edu</a></p>
+<dl class="class">
+<dt id="gmm.gmm.gmm">
+<em class="property">class </em><tt class="descclassname">gmm.gmm.</tt><tt class="descname">gmm</tt><big>(</big><em>G</em>, <em>T=None</em>, <em>R=None</em><big>)</big><a class="headerlink" href="#gmm.gmm.gmm" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the base class used to simulate networks with graph motif models (GMM). The 
+class inherits graph structure from NetworkX (<a class="reference external" href="http://networkx.lanl.gov/">http://networkx.lanl.gov/</a>), a Python 
+library for the manipulation of graph data. This class contains only base data
+necessary calls to to manipulate gmm.</p>
+<p>Algorithms to simulate network structre from this object are contained in 
+gmm_simulate.py.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>G</strong> : base graph, NetworkX Graph or DiGraph object, required at initialization</p>
+<blockquote>
+<div><p>The base graph must be a NetworkX Graph or DiGraph object with more than 
+a singleedge. It is used as the initial structure for the GMM, and is the 
+only parameter required to initialze a gmm object.</p>
+<p><strong>NOTE</strong>: Nodes in base graph are not required to be integers, but if the 
+are not they are converted to integers, and the original labels are stored 
+as a dictionary by nx.convert_nodel_labels_to_integers</p>
+</div></blockquote>
+<p><strong>T</strong> : model termination rule, function, optional at initialization</p>
+<blockquote>
+<div><p>The rule by which the model will terminate. Must be a function that can 
+operate on a NetworkX Graph or DiGraph object, and takes a single graph 
+object as its only parameter.</p>
+</div></blockquote>
+<p><strong>R</strong> : model growth rule, function, optional at initialization</p>
+<blockquote class="last">
+<div><p>The rule by which new structure is added to the base graph. Must be a 
+function that can operate on NetworkX Graph or DiGraph objects.  Function 
+must take exactly two arguments: 1) gmm base structure; 2) new structure 
+to be added, as NetworkX Graph or DiGraph object.  If second argument does 
+not match first it will be coerced to match.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>Any deviation in function design for T or R will cause modeling errors. Basic 
+checks are performed by the gmm class at initialization, but design bugs in 
+either F or T may go undetected despite successful gmm initialization.</p>
+<p class="rubric">Examples</p>
+<p># Create most basic GMM object with five node cycle graph as base.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">gmm</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">=</span><span class="n">nx</span><span class="o">.</span><span class="n">cycle_graph</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">=</span><span class="n">gmm</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+</pre></div>
+</div>
+<p># Using five node cycle graph, create gmm object with node ceiling
+# termination rule of 100 nodes</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">degree_ceiling</span><span class="p">(</span><span class="n">G</span><span class="p">):</span>
+<span class="go">   ...:     if G.number_of_nodes()&gt;=100:</span>
+<span class="go">   ...:         return True</span>
+<span class="go">   ...:     else:</span>
+<span class="go">   ...:         return False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">=</span><span class="n">gmm</span><span class="o">.</span><span class="n">gmm</span><span class="p">(</span><span class="n">G</span><span class="p">,</span><span class="n">degree_ceiling</span><span class="p">)</span>
+</pre></div>
+</div>
+<p># Next, add a simple random growth rule</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">rand_add</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">new</span><span class="p">):</span>
+<span class="go">   ...:     from numpy.random import randint</span>
+<span class="go">   ...:     new=nx.convert_node_labels_to_integers(new,first_label=max(base.nodes())+1)</span>
+<span class="go">   ...:     new_base=nx.compose(base,new)</span>
+<span class="go">   ...:     base_connector=randint(base.number_of_nodes())</span>
+<span class="go">   ...:     new_connector=randint(min(new.nodes()),max(new.nodes()))</span>
+<span class="go">   ...:     new_base.add_edge(base_connector,new_connector)</span>
+<span class="go">   ...:     return new_base</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">set_rule</span><span class="p">(</span><span class="n">rand_add</span><span class="p">)</span>
+</pre></div>
+</div>
+<p># Run simualation with tau=4 and Poisson density for motifs</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">gmm</span><span class="o">.</span><span class="n">algorithms</span><span class="o">.</span><span class="n">simulate</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+<p># View results</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">new_graph</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">get_base</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">new_graph</span><span class="p">))</span>
+</pre></div>
+</div>
+<p class="rubric">Methods</p>
+<dl class="method">
+<dt id="gmm.gmm.gmm.am_gmm">
+<tt class="descname">am_gmm</tt><big>(</big><big>)</big><a class="headerlink" href="#gmm.gmm.gmm.am_gmm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simple function to test if object is a gmm</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gmm.gmm.gmm.apply_rule">
+<tt class="descname">apply_rule</tt><big>(</big><em>new</em>, <em>set_result=False</em><big>)</big><a class="headerlink" href="#gmm.gmm.gmm.apply_rule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies the growth rule to the current base graph with some new structure. If set_result is
+True then set base graph to result of rule application</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gmm.gmm.gmm.apply_termination">
+<tt class="descname">apply_termination</tt><big>(</big><big>)</big><a class="headerlink" href="#gmm.gmm.gmm.apply_termination" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies the termination rule to the current base graph</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gmm.gmm.gmm.get_base">
+<tt class="descname">get_base</tt><big>(</big><em>original=False</em><big>)</big><a class="headerlink" href="#gmm.gmm.gmm.get_base" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns base graph of gmm</p>
+<p>If original is True, return copy of base graph passed at initialization.  If original is False, 
+return current base graph.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gmm.gmm.gmm.revert_base">
+<tt class="descname">revert_base</tt><big>(</big><big>)</big><a class="headerlink" href="#gmm.gmm.gmm.revert_base" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reverts base graph to initial structure</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gmm.gmm.gmm.set_base">
+<tt class="descname">set_base</tt><big>(</big><em>G</em><big>)</big><a class="headerlink" href="#gmm.gmm.gmm.set_base" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set new base graph for gmm, but does not alter original copy</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gmm.gmm.gmm.set_rule">
+<tt class="descname">set_rule</tt><big>(</big><em>R</em><big>)</big><a class="headerlink" href="#gmm.gmm.gmm.set_rule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set growth function</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gmm.gmm.gmm.set_termination">
+<tt class="descname">set_termination</tt><big>(</big><em>T</em><big>)</big><a class="headerlink" href="#gmm.gmm.gmm.set_termination" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the termination rule</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../index.html"
+                        title="previous chapter">Welcome to gmm&#8217;s documentation!</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="algorithms.html"
+                        title="next chapter">algorithms</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/source/gmm.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="algorithms.html" title="algorithms"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="Welcome to gmm’s documentation!"
+             >previous</a> |</li>
+        <li><a href="../index.html">gmm v0.3.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2011, Drew Conway.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+    </div>
+  </body>
+</html>

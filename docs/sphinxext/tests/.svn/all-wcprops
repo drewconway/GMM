@@ -1,0 +1,11 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/numpy/!svn/ver/7733/trunk/doc/sphinxext/tests
+END
+test_docscrape.py
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/numpy/!svn/ver/7733/trunk/doc/sphinxext/tests/test_docscrape.py
+END
