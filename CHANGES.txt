@@ -1,1 +1,7 @@
-v<version>, <date> -- Initial release.
+v<version>, <date> 
+
+Updates
+========
+
+ - Fixed major bug in `poisson_mass` function, estimates are now correct
+ - Added the ability to set the random seed during the GMM simulation.

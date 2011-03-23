@@ -3,7 +3,7 @@ from distutils.core import setup
 
 setup(
     name='GMM',
-    version='0.3.2',
+    version='0.3.3',
     author='Drew Conway',
     author_email='drew.conway@nyu.edu',
     packages=['gmm', 'gmm.test'],
