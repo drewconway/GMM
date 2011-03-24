@@ -2,7 +2,7 @@
 Graph Motif Models
 ==================
 
-This package provides a basic framework and supporting functionality for generating network structure network structure using graph motifs.
+This package provides a basic framework and supporting functionality for generating network structure using graph motifs.
 
 The paper in support of this method is currently unpublished and is a working draft, but is available from the author upon request.
 
