@@ -1,4 +1,5 @@
 deprecated/
 dist/
+.DS_store
+.Rhistory
 *.in
-*.DS_store
