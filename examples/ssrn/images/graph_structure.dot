@@ -1,0 +1,18 @@
+digraph ssrn {
+    rankdir=LR;
+    size="8,4"
+    subgraph cluster_documents {
+        color=black;
+        node [shape = box, style=filled, color=grey, label="'Law as a Seamless Web?'"]; article;
+        label="Title\nAbstract\nKeywords\nPaper Statistics";
+    }
+    subgraph cluster_authors {
+        style=filled;
+        color=lightgrey;
+        node [shape = doublecircle, fixedsize=true, style=filled, color=white, width=1.5, height=1.5]; Bommarito; Katz; Zelner;
+        label="Institution\nAuthor Statistics"
+    }
+    Bommarito -> article [label="Date: 14-07-2010"];
+    Katz -> article [label="Date: 14-07-2010"];
+    Zelner -> article [label="Date: 14-07-2010"];
+}

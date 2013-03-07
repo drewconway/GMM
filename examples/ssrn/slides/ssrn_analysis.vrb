@@ -1,0 +1,30 @@
+\frametitle {Extending this research}
+        Can this type of analysis be applied to economic networks?
+        \begin{itemize}
+            \item What would be the value?
+            \item What contextual data would be worth collecting
+            \item Additional analyses?
+        \end{itemize}
+        \begin{columns}
+            \column{.33\textwidth}
+            \uncover<2->{Venture Capital Investment
+            \begin{itemize}
+                \item Edges naturally temporal and weighted (frequency/amount)
+                \item Structural communities vs. institutional
+                \item Predict future co-investments
+            \end{itemize}}
+            \column{.33\textwidth}
+            \uncover<3->{Nation state relationship
+            \begin{itemize}
+                \item Trade
+                \item Defense
+                \item Evolution and/or decay
+            \end{itemize}}
+            \column{.33\textwidth}
+            \uncover<4->{Market analysis
+            \begin{itemize}
+                \item Investor $\rightarrow$ security
+                \item Market analysts $\rightarrow$ security
+                \item Individuals $\rightarrow$ corporate governance
+            \end{itemize}}
+        \end{columns}

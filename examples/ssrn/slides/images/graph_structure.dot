@@ -1,0 +1,8 @@
+digraph ssrn {
+    rankdir=LR;
+    node [shape = box, color=grey, style=filled]; article;
+    node [shape = doublecircle, color=grey, style=filled]; Bommarito; Katz; Zelner; 
+    Bommarito -> article
+    Katz -> article
+    Zelner -> article
+}
